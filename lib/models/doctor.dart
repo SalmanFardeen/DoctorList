@@ -16,7 +16,7 @@ enum Specialities {
 }
 class Doctor{
   final String id;
-  final List<String> degrees;
+  final String degrees;
   final String name;
   final String imageUrl;
   final String address;

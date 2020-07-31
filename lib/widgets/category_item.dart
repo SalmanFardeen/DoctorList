@@ -1,23 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'screens/doctor_screen.dart';
+import '../screens/doctor_screen.dart';
 class CategoryItem extends StatelessWidget {
   final String title;
   final Widget avatar;
   final String text;
   final String id;
+  /*CategoryItem({
+    Key key,
+    this.id,this.title,this.avatar,this.text
+  }) : super(key: key);
+*/
+
   CategoryItem(this.id,this.title,this.avatar,this.text);
   void selectCategory(BuildContext ctx){
     Navigator.of(ctx).pushNamed(DoctorScreen.routeName,arguments: {
       'id' :id,'title':title,
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
+      padding:const EdgeInsets.fromLTRB(18, 20, 18, 0),
       child: InkWell(
-        onTap: () => selectCategory(context),
+        onTap: () {
+            selectCategory(context);
+            print(id);
+          },
         splashColor: Colors.tealAccent,
         borderRadius: BorderRadius.circular(9),
         child: Card(
