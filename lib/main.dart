@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './screens/doctor_screen.dart';
 import './screens/categories_screen.dart';
 import 'widgets/doctor_appointment.dart';
-import 'radio.dart';
 void main () => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
@@ -14,11 +13,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         accentColor: Colors.tealAccent,
       ),
-      home: RadioButton(title: 'radio',),
+      home: CategoriesScreen(),
 
       routes: {
         DoctorScreen.routeName:(ctx) => DoctorScreen(),
-
       },
     );
   }

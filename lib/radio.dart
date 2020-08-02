@@ -2,9 +2,9 @@ import 'package:custom_radio/custom_radio.dart';
 import 'package:flutter/material.dart';
 
 class RadioButton extends StatefulWidget {
-  RadioButton({Key key, this.title}) : super(key: key);
 
-  final String title;
+
+
   String radioValue = 'First';
 
   @override
@@ -42,22 +42,28 @@ class _RadioButtonState extends State<RadioButton> with SingleTickerProviderStat
               widget.radioValue = value;
             });
           },
-          child: Container(
-              padding: EdgeInsets.all(32.0),
-              margin: EdgeInsets.symmetric(horizontal: 2.0, vertical: 12.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Theme.of(context).primaryColor.withAlpha(alpha),
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor.withAlpha(255 - alpha),
-                    width: 4.0,
-                  )
-              ),
-              child: Text(
-                value,
-                style: Theme.of(context).textTheme.body1.copyWith(fontSize: 20.0),
-              )
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Container(
+              height: 50,
+                width: 120,
+                padding: EdgeInsets.all(0.0),
+                margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Theme.of(context).primaryColor.withAlpha(alpha),
+
+                ),
+                child: Text(
+                  value,
+                  style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
+                  fontSize: 16),
+                )
+            ),
           )
       );
     };
@@ -123,56 +129,16 @@ class _RadioButtonState extends State<RadioButton> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: ListView(
+    return
+      ListView(
         children: <Widget>[
-          CustomRadio<String, dynamic>(
-              value: 'Green',
-              groupValue: widget.radioValue,
-              duration: Duration(milliseconds: 800),
-              animsBuilder: (AnimationController controller) => [
-                CurvedAnimation(
-                  parent: controller,
-                  curve: Curves.ease,
-                ),
-                ColorTween(begin: Colors.greenAccent.withAlpha(200), end: Colors.green).animate(controller),
-              ],
-              builder: customBuilder
-          ),
-          CustomRadio<String, dynamic>(
-            value: 'Red',
-            groupValue: widget.radioValue,
-            duration: Duration(milliseconds: 800),
-            animsBuilder: (AnimationController controller) => [
-              CurvedAnimation(
-                parent: controller,
-                curve: Curves.ease,
-              ),
-              ColorTween(begin: Colors.redAccent.withAlpha(200), end: Colors.red).animate(controller),
-            ],
-            builder: customBuilder,
-          ),
-          CustomRadio<String, dynamic>(
-            value: 'Blue',
-            groupValue: widget.radioValue,
-            duration: Duration(milliseconds: 800),
-            animsBuilder: (AnimationController controller) => [
-              CurvedAnimation(
-                parent: controller,
-                curve: Curves.ease,
-              ),
-              ColorTween(begin: Colors.blueAccent.withAlpha(200), end: Colors.blue).animate(controller),
-            ],
-            builder: customBuilder,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CustomRadio<String, double>(
                   value: 'First',
                   groupValue: widget.radioValue,
-                  duration: Duration(milliseconds: 500),
+                  duration: Duration(milliseconds: 200),
                   animsBuilder: (AnimationController controller) => [
                     CurvedAnimation(
                         parent: controller,
@@ -208,173 +174,10 @@ class _RadioButtonState extends State<RadioButton> with SingleTickerProviderStat
             ],
           ),
           Divider(),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                CustomRadio<String, dynamic>(
-                  value: 'Fourth',
-                  groupValue: widget.radioValue,
-                  animsBuilder: (AnimationController controller) => [
-                    CurvedAnimation(
-                        parent: controller,
-                        curve: Curves.easeInOut
-                    ),
-                    ColorTween(
-                        begin: Colors.white,
-                        end: Colors.deepPurple
-                    ).animate(controller),
-                    ColorTween(
-                        begin: Colors.deepPurple,
-                        end: Colors.white
-                    ).animate(controller),
-                  ],
-                  builder: dynamicBuilder,
-                ),
-                CustomRadio<String, dynamic>(
-                  value: 'Fifth',
-                  groupValue: widget.radioValue,
-                  animsBuilder: (AnimationController controller) => [
-                    CurvedAnimation(
-                        parent: controller,
-                        curve: Curves.easeInOut
-                    ),
-                    ColorTween(
-                        begin: Colors.white,
-                        end: Colors.deepPurple
-                    ).animate(controller),
-                    ColorTween(
-                        begin: Colors.deepPurple,
-                        end: Colors.white
-                    ).animate(controller),
-                  ],
-                  builder: dynamicBuilder,
-                ),
-                CustomRadio<String, dynamic>(
-                  value: 'Sixth',
-                  groupValue: widget.radioValue,
-                  animsBuilder: (AnimationController controller) => [
-                    CurvedAnimation(
-                        parent: controller,
-                        curve: Curves.easeInOut
-                    ),
-                    ColorTween(
-                        begin: Colors.white,
-                        end: Colors.deepPurple
-                    ).animate(controller),
-                    ColorTween(
-                        begin: Colors.deepPurple,
-                        end: Colors.white
-                    ).animate(controller),
-                  ],
-                  builder: dynamicBuilder,
-                ),
-              ]
-          ),
           Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Radio<String>(
-                  value: 'Seventh',
-                  groupValue: widget.radioValue,
-                  onChanged: (String value) {
-                    setState(() {
-                      widget.radioValue = value;
-                    });
-                  }
-              ),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Text('Radio')
-              )
-            ],
-          ),
-          CustomRadio<String, double>(
-            value: 'Eighth',
-            groupValue: widget.radioValue,
-            duration: Duration(milliseconds: 400),
-            animsBuilder: (AnimationController controller) => [
-              CurvedAnimation(
-                  parent: controller,
-                  curve: Curves.ease
-              )
-            ],
-            builder: (BuildContext context, List<double> animValues, Function updateState, String value) {
-              return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    GestureDetector(
-                        onTapDown: (TapDownDetails details) {
-                          setState(() {
-                            if (_controller.status != AnimationStatus.completed)
-                              _controller.forward();
-                          });
-                        },
-                        onTapUp: (TapUpDetails details) {
-                          setState(() {
-                            if (_controller.status != AnimationStatus.dismissed)
-                              _controller.reverse();
-                          });
-                        },
-                        onTap: () {
-                          setState(() {
-                            widget.radioValue = value;
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.all(8.0),
-                          width: 38.0,
-                          height: 38.0,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Stack(
-                              alignment: Alignment.center,
-                              children: <Widget>[
-                                Container(
-                                  width: 38.0 * _animation.value,
-                                  height: 38.0 * _animation.value,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context).primaryColor.withAlpha(40)
-                                  ),
-                                ),
-                                Container(
-                                  width: 18.0,
-                                  height: 18.0,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.transparent,
-                                      border: Border.all(
-                                          color: animValues[0] >= 0.5 ? Theme.of(context).primaryColor : Theme.of(context).hintColor,
-                                          width: 2.0
-                                      )
-                                  ),
-                                ),
-                                Container(
-                                  width: 9.0 * animValues[0],
-                                  height: 9.0 * animValues[0],
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                              ]
-                          ),
-                        )
-                    ),
-                    Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text('CustomRadio')
-                    )
-                  ]
-              );
-            },
-          ),
         ],
-      ),
-    );
+      );
+
   }
 
 }

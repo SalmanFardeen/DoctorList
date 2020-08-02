@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:meals_app/dummy_doctors.dart';
+import 'package:meals_app/radio.dart';
+import 'package:custom_radio/custom_radio.dart';
 class DoctorAppointment extends StatefulWidget {
   final String categoryId;
   final String categoryTitle;
@@ -136,11 +138,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                  ],
                ),],
              ),
-              Row(
-                children: <Widget>[
-
-                ],
-              ),//
+              RadioButton(),
             ],
           ),
         ],
